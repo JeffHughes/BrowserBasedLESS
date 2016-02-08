@@ -16,24 +16,14 @@ function getDomain(url) {
 
 function recursionCheck(extClass) {
     if (blessExtendedClasses.hasOwnProperty(extClass)) {
-        console.log("recursive found: " + extClass + " " + $("." + extClass).length);
+        // console.log("recursive found: " + extClass + " " + $("." + extClass).length);
 
         var appendClasses = blessExtendedClasses[extClass].split(",");
 
         $.each(appendClasses, function (i, e) {
             $.each($("." + extClass).get(), function (i2, e2) {
-                var ele = $(e2);
-
-                var attr = $(e2).attr('cursed');
-
-                console.log("attr: " + attr);
-
-                if ($(e2).attr('cursed') === undefined) {
-                    ele.addClass(e.trim());
-                    console.log(extClass + " extends " + blessExtendedClasses[extClass] + " applying to " + i2);
-                } else {
-                    console.log(extClass + " extends " + blessExtendedClasses[extClass] + " cursed on " + i2);
-                }
+                if ($(e2).attr('cursed') === undefined)
+                    $(e2).addClass(e.trim());
             });
 
             recursionCheck(blessExtendedClasses[extClass]);
@@ -61,9 +51,9 @@ function ParseClasses(classes) {
 
               $.each(props, function (propIndex, prop) {
                   if (prop !== undefined)
-                      if (prop.indexOf("@bbless") > -1) {
-                          var extClass = prop.replace("@bbless", "").trim();
-                          console.log(className + " extends " + extClass + " applying to " + $(className).length);
+                      if (prop.indexOf("@bless-with") > -1) {
+                          var extClass = prop.replace("@bless-with", "").trim();
+                          // console.log(className + " is blessed by " + extClass + " applying to " + $(className).length);
 
                           $(className).addClass(extClass);
 
@@ -87,10 +77,10 @@ $(function () {
     ParseClasses(classes);
 
     $.each(document.styleSheets, function (i, e) {
-        console.log(i + " " + e.href + " " + getDomain(e.href) + " " + document.location.host);
+        //console.log(i + " " + e.href + " " + getDomain(e.href) + " " + document.location.host);
 
         if (getDomain(e.href) === document.location.host) {
-            console.log(" found a local style sheet ");
+            //console.log(" found a local style sheet ");
 
             $.get(e.href, function (data) {
                 ParseClasses(data.split("}"));

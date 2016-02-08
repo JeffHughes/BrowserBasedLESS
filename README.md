@@ -17,19 +17,19 @@ But, how hard is it for JQuery to do this?
 $(".1").addClass("2");
 ```
 
-So why not use something like this (with a couple lines of JQuery magic):
+So why not use something like this (with a couple lines of that JQuery magic):
 
 ```
 
 .button-primary {
-    @bbless btn;
-    @bbless btn-primary;
+    @bless-with btn;
+    @bless-with btn-primary;
     display: block;
     margin: 5px;
 }
 
 button {
-    @bbless button-primary;
+    @bless-with button-primary;
 }
 
 ```
@@ -51,28 +51,28 @@ instead of like this:
 No pre-processors.
 
 ###Libarary Features
-- Allow CSS classes to "bbless" (suedo-inherit) other classes
+- Allow CSS classes to {bless} (suedo-inherit) other classes
 - Validate site-specific CSS usage with meaningful errors
 
-####BBlessed items
-BBlessed items are selectors that are "BBlessed" with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes (using our own keywords for clarity).  *Selectors can have multiple "bblessings".*
+####BBLESSed items
+{bless}ed items have style sheet selectors that are {bless}ed with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes (using our own keywords for clarity).
 
 ```
 
 .button-primary {
-    @bbless btn;
-    @bbless btn-primary;
+    @bless-with btn;
+    @bless-with btn-primary;
     display: block;
     margin: 5px;
 }
 
 button {
-    @bbless button-primary;
+    @bless-with button-primary;
 }
 
 ```
 
-In this first example, all button elements are "bblessed" by the .button-primary class.
+In this first example, all button elements are {bless}ed by the .button-primary class. The .button-primary class has multiple {bless}ings ('btn' and 'btn-primary'). So, button elements don't need any additional decoration at all.
 
 ```
 
@@ -88,7 +88,7 @@ results in:
 
 at run-time.
 
-"bblessings" can be recursive:
+{bless}ings can be recursive:
 ```
 
 .first {
@@ -98,18 +98,18 @@ at run-time.
 }
 
 .second {
-    @bbless first;
+    @bless-with first;
     background-color: lightgray;
 }
 
 .third {
-    @bbless second;
+    @bless-with second;
     border: 5px solid orange;
 }
 
 ```
 
-In the above example, the 'third' class is "bblessed" by the 'second' class (which is "bblessed" by the 'first' class).  The end result is that any item that has class="third", will get all 3 classes at run-time.
+In the above example, the 'third' class is {bless}ed with the 'second' class (which is {bless}ed with the 'first' class).  The end result is that any item that has class="third", will get all 3 classes at run-time.
 
 ```
 
@@ -126,7 +126,7 @@ results in:
 at run-time.
 
 ####Cursed items
-Of course, there will always be the one item that just has to be different ... just add a "cursed" attribute and the bbless library will ignore it.
+Of course, there will always be the one item that just has to be different ... just add a "cursed" attribute and the {bless} library will ignore it.
 
 ![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/bblessSample1CursedButton.png)
 
@@ -135,7 +135,7 @@ Of course, there will always be the one item that just has to be different ... j
 The second part of the library, makes sure you did it right.
 
 ##The DAMNED
-The Darned Attribute May Not Equal Default.
+The Demanded Attribute May Not Equal Default.
 
 ####Commandments
 Commandments are a list of rules that the library enforces.
@@ -150,7 +150,7 @@ Sinners are objects that break commandments.
 If a sinner breaks a commandment, the library will generate a descriptive error in the console and cause the "sinner" to pulsate red or be appended with a small set of horns.
 
 ------------------------------
-###Why do we need BBLess?
+###Why do we need {BBLESS}?
 
 --LESS/SASS are great, but pre-processing adds a significant layer of complexity (which can be more trouble than it's worth - particularly in static environments).
 
