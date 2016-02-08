@@ -5,10 +5,6 @@ This is very much a work in progress - don't judge me, yet!
 # Browser Based LESS
 ###Process dynamic CSS using JQuery.
 
-Most of the time, a &lt;cigar class="cigar cigar-default"> is just a &lt;cigar />.
-
-I understand the need for decorating buttons as buttons, tables as tables, and sections as sections in a large library; because sometimes an &lt;a /> acts like a &lt;button />, or a &lt;div /> acts like a &lt;section />.
-
 CSS doesn't natively allow extending the properties of one class to another.
 
 But, how hard is it for JQuery to do this?
@@ -54,8 +50,8 @@ No pre-processors.
 - Allow CSS classes to {bless} (suedo-inherit) other classes
 - Validate site-specific CSS usage with meaningful errors
 
-####BBLESSed items
-{bless}ed items have style sheet selectors that are {bless}ed with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes (using our own keywords for clarity).
+####{BLESS}ed items
+{Bless}ed items have style sheet selectors that are {bless}ed with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes at run-time.
 
 ```
 
@@ -72,7 +68,7 @@ button {
 
 ```
 
-In this first example, all button elements are {bless}ed by the .button-primary class. The .button-primary class has multiple {bless}ings ('btn' and 'btn-primary'). So, button elements don't need any additional decoration at all.
+In this first example, all button elements are {bless}ed by the '.button-primary' class. The '.button-primary' class has multiple {bless}ings ('.btn' and '.btn-primary') and some additional properties. So, button elements don't need any class decorations at all in the code to receive '.btn', '.btn-primary' and '.button-primary' at run-time.
 
 ```
 
@@ -126,7 +122,7 @@ results in:
 at run-time.
 
 ####Cursed items
-Of course, there will always be the one item that just has to be different ... just add a "cursed" attribute and the {bless} library will ignore it.
+Of course, there will always be the one item that just has to be different ... just add a "cursed" attribute to an item and the {bbless} library will ignore it.
 
 ![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/bblessSample1CursedButton.png)
 
@@ -152,7 +148,9 @@ If a sinner breaks a commandment, the library will generate a descriptive error 
 ------------------------------
 ###Why do we need {BBLESS}?
 
---LESS/SASS are great, but pre-processing adds a significant layer of complexity (which can be more trouble than it's worth - particularly in static environments).
+-- I understand the need for decorating buttons as buttons, tables as tables, and sections as sections in a large library; because sometimes an &lt;a /> acts like a &lt;button />, or a &lt;div /> acts like a &lt;section />.  But, most of the time, a &lt;cigar class="cigar cigar-default"> is just a &lt;cigar />.
+
+-LESS/SASS are great, but pre-processing adds a significant layer of complexity (which can be more trouble than it's worth - particularly in static environments).
 
 -We're using JQuery anyway.
 
