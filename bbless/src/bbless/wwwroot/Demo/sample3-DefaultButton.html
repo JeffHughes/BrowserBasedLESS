@@ -8,6 +8,7 @@
     <title>bbless Sample #1</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <!-- 4.0.0-alpha.2/css/bootstrap.min.css includes https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css-->
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/vs.min.css">
 
@@ -22,26 +23,56 @@
         button {
             @bless-with button-primary;
         }
+
+        button-primary {
+            @bless-with button-primary;
+        }
+    </style>
+
+    <style>
+        .card {
+            margin: 5px;
+            width: 400px;
+            box-shadow: 0 0 10px black;
+        }
+
+        card {
+            @bless-with card;
+        }
     </style>
 </head>
 <body>
+    <h3>Roll your own tag</h3>
 
     <div class="row">
         <div class="col-sm-2">
+            <button-primary>Button-Primary</button-primary>
             <button>Normal Button</button>
-            <button>Normal Button</button>
-            <button cursed class="btn btn-danger">Cursed Button</button>
-            <button>Normal Button</button>
-            <button>Normal Button</button>
+            <button cursed>Cursed Button</button>
+
+            button-primary is wider because it doesn't inherit normalizrs default button properties.
         </div>
         <div class="col-sm-10">
-            <pre><code class="html">&lt;button&gt;Normal Button&lt;/button&gt;
-&lt;button&gt;Normal Button&lt;/button&gt;
-&lt;button cursed class=&quot;btn btn-danger&quot;&gt;Cursed Button&lt;/button&gt;
-&lt;button&gt;Normal Button&lt;/button&gt;
-&lt;button&gt;Normal Button&lt;/button&gt;
+            <card>
+                <pre><code class="css">&lt;style&gt;
+.button-primary {
+    @bless-with btn;
+    @bless-with btn-primary;
+    display: block;
+    margin: 5px;
+}
+button-primary {
+    @bless-with button-primary;
+}
+&lt;/style&gt</code></pre>
+            </card>
+            <card>
+                <pre><code class="html">&lt;button-primary&gt;Primary Button&lt;/button-primary&gt;
+&lt;button &gt;Normal Button&lt;/button&gt;
+&lt;button cursed  &gt;Cursed Button&lt;/button &gt;
 </code>
 </pre>
+            </card>
         </div>
     </div>
 
@@ -58,7 +89,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/languages/javascript.min.js"></script>
 
     <script>hljs.initHighlightingOnLoad();</script>
 
