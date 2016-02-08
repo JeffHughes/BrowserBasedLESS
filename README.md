@@ -3,17 +3,21 @@ This is very much a work in progress - don't judge me, yet!
 ![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/BBLESSLogo400.jpg)
 
 # Browser Based LESS
-Process dynamic CSS using JQuery.
+###Process dynamic CSS using JQuery.
 
-Most of the time, in my code a &lt;cigar class="cigar cigar-default"> is just a &lt;cigar />.
+Most of the time, a &lt;cigar class="cigar cigar-default"> is just a &lt;cigar />.
 
-How hard is it for JQuery to do this?
+I understand the need for decorating buttons as buttons, tables as tables, and sections as sections in a large library; because sometimes an &lt;a /> acts like a &lt;button />, or a &lt;div /> acts like a &lt;section />.
+
+CSS doesn't natively allow extending the properties of one class to another.
+
+But, how hard is it for JQuery to do this?
 ```
 
 $(".1").addClass("2");
 ```
 
-So why not use something like this:
+So why not use something like this (with a couple lines of JQuery magic):
 
 ```
 
@@ -44,16 +48,14 @@ instead of like this:
 <button class="btn btn-primary" style="display: block; margin: 5px">Normal Button</button>
 ```
 
-with a couple lines of JQuery magic?
-
-Allowing the functionalty ultimately results in reduced code.
+No pre-processors.
 
 ###Libarary Features
 - Allow CSS classes to "bbless" (suedo-inherit) other classes
 - Validate site-specific CSS usage with meaningful errors
 
 ####BBlessed items
-BBlessed items are selectors that are "BBlessed" with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes using our own keywords for clarity.
+BBlessed items are selectors that are "BBlessed" with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes (using our own keywords for clarity).  *Selectors can have multiple "bblessings".*
 
 ```
 
@@ -70,7 +72,21 @@ button {
 
 ```
 
-In this first example, all button elements are "bblessed" by the .button-primary class.  Selectors can have multiple "bblessings".
+In this first example, all button elements are "bblessed" by the .button-primary class.
+
+```
+
+<button>Normal Button</button>
+```
+
+results in:
+
+```
+
+<button class="btn btn-primary" style="display: block; margin: 5px">Normal Button</button>
+```
+
+at run-time.
 
 "bblessings" can be recursive:
 ```
@@ -95,28 +111,55 @@ In this first example, all button elements are "bblessed" by the .button-primary
 
 In the above example, the 'third' class is "bblessed" by the 'second' class (which is "bblessed" by the 'first' class).  The end result is that any item that has class="third", will get all 3 classes at run-time.
 
+```
+
+<div class="third" />
+```
+
+results in:
+
+```
+
+<div class="first second third" style="height: 150px; width: 150px; margin: 25px; background-color: lightgray; border: 5px solid orange" />
+```
+
+at run-time.
+
 ####Cursed items
-Of course, there will always be the one item that just has to be different ... just add a "cursed" attribute and the bbless library will ignore it.  But, remember, you'll have to add all those classes and styles back in manually for curesed items.
+Of course, there will always be the one item that just has to be different ... just add a "cursed" attribute and the bbless library will ignore it.
 
 ![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/bblessSample1CursedButton.png)
 
+------------------------------
+------------------------------
 The second part of the library, makes sure you did it right.
+
+##The DAMNED
+The Darned Attribute May Not Equal Default.
 
 ####Commandments
 Commandments are a list of rules that the library enforces.
 
-For example: width must be set for items that have class centered
+For example: width must be set for items that have class="centered"
 
-If not, the library will generate a handy and descriptive error in the console and cause the "sinner" to pulsate red or be appended with a small set of horns.
+It's not a default attribute; but required for margin:auto to function properly.
 
 ####Sinners
 Sinners are objects that break commandments.
 
-####The Damned
+If a sinner breaks a commandment, the library will generate a descriptive error in the console and cause the "sinner" to pulsate red or be appended with a small set of horns.
 
-####Why
--CSS doesn't natively allow extending the properties of one class to another.
+------------------------------
+###Why do we need BBLess?
 
--LESS/SASS do and they're great, but they add a significant layer of complexity (which can be more trouble than it's worth - particularly in static environments).
+--LESS/SASS are great, but pre-processing adds a significant layer of complexity (which can be more trouble than it's worth - particularly in static environments).
 
--I got tired of decorating buttons as buttons, tables as tables, and sections as sections.  I understand the need for it in a large library; because sometimes an &lt;a /> acts like a &lt;button />, or a &lt;div /> acts like a &lt;section />.
+-We're using JQuery anyway.
+
+-Allowing the functionalty ultimately results in reduced/cleaner code.
+
+-Works on static files.
+
+-Light-footprint.
+
+Ok, so it doesn't blend rgb colors and alphas, but it could be extended to do so.
