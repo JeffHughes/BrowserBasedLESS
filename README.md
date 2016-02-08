@@ -1,5 +1,7 @@
 This is very much a work in progress - don't judge me, yet!
 
+![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/BBLESSLogo400.jpg)
+
 # BrowserBasedLESS
 Process dynamic CSS using JQuery.
 
@@ -53,4 +55,7 @@ and a couple lines of JQuery magic?
 
 @@bbless
 
-cursed
+####cursed items
+Of course, there will always be
+
+![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/bblessSample1CursedButton.png)
