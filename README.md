@@ -2,7 +2,8 @@ This is very much a work in progress - don't judge me, yet!
 
 ![Image of 1CursedButton](https://raw.githubusercontent.com/JeffHughes/BrowserBasedLESS/master/bbless/src/bbless/wwwroot/images/BBLESSLogo400.jpg)
 
-# Browser Based LESS
+#Browser Based LESS
+####Linked Encapsulated Style Sheets
 ###Process dynamic CSS using JQuery.
 
 CSS doesn't natively allow extending the properties of one class to another.
@@ -44,14 +45,14 @@ instead of like this:
 <button class="btn btn-primary" style="display: block; margin: 5px">Normal Button</button>
 ```
 
-No pre-processors.
+Suck it SASS/LESS; No pre-processors required.
 
-###Libarary Features
+###Library Features
 - Allow CSS classes to {bless} (suedo-inherit) other classes
 - Validate site-specific CSS usage with meaningful errors
 
-####{BLESS}ed items
-{Bless}ed items have style sheet selectors that are {bless}ed with the classes of other selectors.  It works a lot like inheritence.  But, it's not really inheritence, we're just adding classes at run-time.
+####{Bless}ed items
+{Bless}ed items have style sheet selectors that are {bless}ed with the classes of other selectors.  It works a lot like inheritence; kinda-sorta like a mixin.  But, it's not really either, we're just adding classes at run-time.
 
 ```
 
@@ -68,7 +69,7 @@ button {
 
 ```
 
-In this first example, all button elements are {bless}ed by the '.button-primary' class. The '.button-primary' class has multiple {bless}ings ('.btn' and '.btn-primary') and some additional properties. So, button elements don't need any class decorations at all in the code to receive '.btn', '.btn-primary' and '.button-primary' at run-time.
+In this first example, all button elements are {bless}ed by the '.button-primary' class. The '.button-primary' class has multiple {bless}ings ('.btn' and '.btn-primary') and some additional properties. So, button elements don't need any class decorations at all in the code to receive '.btn', '.**btn**-primary' (bootstrap) and '.**button**-primary' (local) at run-time.
 
 ```
 
@@ -84,7 +85,9 @@ results in:
 
 at run-time.
 
-{bless}ings can be recursive:
+----
+
+{Bless}ings can be recursive:
 ```
 
 .first {
@@ -105,7 +108,7 @@ at run-time.
 
 ```
 
-In the above example, the 'third' class is {bless}ed with the 'second' class (which is {bless}ed with the 'first' class).  The end result is that any item that has class="third", will get all 3 classes at run-time.
+In the above example, the '.third' class is {bless}ed with the '.second' class (which is {bless}ed with the '.first' class).  The end result is that any item that has class="third", will get all 3 classes at run-time.
 
 ```
 
@@ -131,19 +134,24 @@ Of course, there will always be the one item that just has to be different ... j
 The second part of the library, makes sure you did it right.
 
 ##The DAMNED
-The Demanded Attribute May Not Equal Default.
+The Demanded Attribute Must Not Equal Default.
 
 ####Commandments
 Commandments are a list of rules that the library enforces.
 
-For example: width must be set for items that have class="centered"
-
+For example: width must be set for items that have class="centered",
 It's not a default attribute; but required for margin:auto to function properly.
+
+Or: or assumes parent position is absolute (but it's not).
+
+Or: used two conflicting classes (style-sin)
 
 ####Sinners
 Sinners are objects that break commandments.
 
 If a sinner breaks a commandment, the library will generate a descriptive error in the console and cause the "sinner" to pulsate red or be appended with a small set of horns.
+
+During testing, jQuery runs thru the commandments and all the elements at run-time.
 
 ------------------------------
 ###Why do we need {BBLESS}?

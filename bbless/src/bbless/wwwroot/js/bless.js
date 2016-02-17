@@ -1,5 +1,10 @@
-﻿//Browser Based LESS
-//Jeff Hughes
+﻿/*******************************************************
+ * Copyright (C) 2016 Jeff Hughes <me@jeffhughes.com>
+ *
+ * This file is part of BBLESS.   http://BBLESS.net
+ *
+ * License: http://opensource.org/licenses/MIT
+ *******************************************************/
 
 var blessExtendedClasses = new Object();
 
